@@ -6,7 +6,8 @@
 {{ $css_classes := $page.Params.design.css_class | default $page.Params.advanced.css_class | default "" }}
 
 <section id="{{$hash_id}}" class="home-section {{if $bg.text_color_light}}dark{{else if (eq $bg.text_color_light false)}}light{{end}} {{with $css_classes}}{{.}}{{end}}" {{with $style}}style="{{. | safeCSS}}"{{end}}>
-    {{if $use_container}}<div class="container">{{end}}
+    <div class="container">
+      {{ $page.Title }}
 
       <div class="row  {{if not $page.Title | or (eq $columns "1") }}justify-content-center{{end}}">
       {{ if $page.Title }}
@@ -187,5 +188,5 @@
   </div>
 {{ end }}
 
-{{if $use_container}}</div>{{end}}
+</div>
 </section>
