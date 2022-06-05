@@ -9,6 +9,8 @@
     <div class="container">
       {{ $page.Title }}
       {{ $columns }}
+      <div>
+      </div>
 
       <div class="row  {{if not $page.Title | or (eq $columns "1") }}justify-content-center{{end}}">
       {{ if $page.Title }}
