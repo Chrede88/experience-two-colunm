@@ -3,6 +3,22 @@
 {{ $columns := $page.Params.design.columns | default "2" }}
 
 <!-- Experience widget -->
+<div class="row  {{if not $st.Title | or (eq $columns "1") }}justify-content-center{{end}}">
+{{ if .Title }}
+  {{ if eq $columns "1" }}
+    <div class="section-heading col-12 mb-3 text-center">
+      {{ with $st.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
+      {{ with $st.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
+    </div>
+  {{else}}
+    <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
+      {{ with $st.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
+      {{ with $st.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
+    </div>
+  {{end}}
+{{end}}
+
+
 {{ if and $page.Params.primary $page.Params.other }}
   <div class="col-12 col-lg">
 {{ else }}
@@ -165,3 +181,4 @@
 {{ if and $page.Params.primary $page.Params.other }}
   </div>
 {{ end }}
+</div>
