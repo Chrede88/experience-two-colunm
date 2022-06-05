@@ -8,7 +8,7 @@
 <section id="{{$hash_id}}" class="home-section {{if $bg.text_color_light}}dark{{else if (eq $bg.text_color_light false)}}light{{end}} {{with $css_classes}}{{.}}{{end}}" {{with $style}}style="{{. | safeCSS}}"{{end}}>
     <div class="container">
       {{ $page.Title }}
-      {{ "Some text" }}
+      <p>{{ Some text }}</p>
 
       <div class="row  {{if not $page.Title | or (eq $columns "1") }}justify-content-center{{end}}">
       {{ if $page.Title }}
