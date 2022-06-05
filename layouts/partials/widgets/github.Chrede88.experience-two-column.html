@@ -1,23 +1,28 @@
 {{ $ := .root }}
 {{ $page := .page }}
 {{ $columns := $page.Params.design.columns | default "2" }}
+{{ $hash_id := replace $page.File.ContentBaseName "index" (path.Base .File.Dir) }}
+{{ $bg := $page.Params.design.background }}
+{{ $css_classes := $page.Params.design.css_class | default $page.Params.advanced.css_class | default "" }}
 
-<!-- Experience widget -->
-<div class="row  {{if not $page.Title | or (eq $columns "1") }}justify-content-center{{end}}">
-{{ if $page.Title }}
-  {{ if eq $columns "1" }}
-    <div class="section-heading col-12 mb-3 text-center">
-      {{ with $page.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
-      {{ with $page.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
-    </div>
-  {{else}}
-    <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-      {{ with $page.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
-      {{ with $page.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
-    </div>
-  {{end}}
-{{end}}
+<section id="{{$hash_id}}" class="home-section {{if $bg.text_color_light}}dark{{else if (eq $bg.text_color_light false)}}light{{end}} {{with $css_classes}}{{.}}{{end}}" {{with $style}}style="{{. | safeCSS}}"{{end}}>
+    {{if $use_container}}<div class="container">{{end}}
 
+      <div class="row  {{if not $page.Title | or (eq $columns "1") }}justify-content-center{{end}}">
+      {{ if $page.Title }}
+        {{ if eq $columns "1" }}
+          <div class="section-heading col-12 mb-3 text-center">
+            {{ with $page.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
+            {{ with $page.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
+          </div>
+        {{else}}
+          <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
+            {{ with $page.Title }}<h1 class="mb-0">{{ . | markdownify | emojify }}</h1>{{ end }}
+            {{ with $page.Params.subtitle }}<p class="mt-1">{{ . | markdownify | emojify }}</p>{{ end }}
+          </div>
+        {{end}}
+      {{end}}
+      </div>
 
 {{ if and $page.Params.primary $page.Params.other }}
   <div class="col-12 col-lg">
@@ -181,4 +186,6 @@
 {{ if and $page.Params.primary $page.Params.other }}
   </div>
 {{ end }}
-</div>
+
+{{if $use_container}}</div>{{end}}
+</section>
