@@ -7,4 +7,4 @@
        - path: github.com/Chrede88/wowchemy-widget-experince-two-column
    ```
 1. Create an instance of your widget in `home/`
-   See example in `content/home/github.experince-two-column.md`
+   See example in `content/home/github.experience-two-column.md`
