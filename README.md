@@ -4,7 +4,7 @@
    ```yaml
    module:
      imports:
-       - path: github.com/Chrede88/wowchemy-widget-experince-two-column
+       - path: github.com/Chrede88/wowchemy-widget-experience-two-column
    ```
 2. Create an instance of the widget in `home/`
    See example in `content/home/github.experience-two-column.md`
